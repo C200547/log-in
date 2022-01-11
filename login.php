@@ -21,11 +21,15 @@ if (!empty($_POST)) {
             $stmt->execute();
 			$member = $stmt->fetch(PDO::FETCH_ASSOC);
 //  ここにパスワードのチェック処理を完成させる
-//  		if( xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx ) {
+	    $hashed = password_hash($password, PASSWORD_DEFAULT);
+  	    if(password_verify($password, $hashed)) {
+		    $error['login'] = 'true';
 				// ログイン成功
 
 //  ここにセッションハイジャック対策を追加
-//
+    	    if(! password_verify($password, $hash)){
+		    
+	    }
 
 				$_SESSION['id'] = $member['id'];
 				$_SESSION['time'] = time();
